@@ -1,0 +1,16 @@
+PODS:
+  - AMoAd (5.2.7)
+
+DEPENDENCIES:
+  - AMoAd
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AMoAd
+
+SPEC CHECKSUMS:
+  AMoAd: c7a8b0135a4a560e0f45c678011c2fc78a3c70ef
+
+PODFILE CHECKSUM: 342f4a76ef20c646589c068f19493045fbab7fef
+
+COCOAPODS: 1.5.3
