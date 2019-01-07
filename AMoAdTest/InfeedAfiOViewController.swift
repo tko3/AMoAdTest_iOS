@@ -59,7 +59,7 @@ class InfeedAfiOViewController: UIViewController {
   }
 
   @IBAction func onEnvSegmentalControlChanged(_ sender: UISegmentedControl) {
-    AMoAdNativeViewManager.shared()?.setEnvStaging(sender.selectedSegmentIndex == 0)
+    AMoAdNativeViewManager.shared()?.setEnvStaging(sender.selectedSegmentIndex == 1)
   }
 
   @IBAction func textFieldDidBeginEditing(_ sender: UITextField) {

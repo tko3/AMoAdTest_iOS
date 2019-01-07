@@ -41,7 +41,7 @@ class BannerViewController: UIViewController {
    */
 
   @IBAction func onEnvSegmentalControlChanged(_ sender: UISegmentedControl) {
-    AMoAdView.setEnvStaging(sender.selectedSegmentIndex == 0)
+    AMoAdView.setEnvStaging(sender.selectedSegmentIndex == 1)
   }
 
   @IBAction func textFieldDidBeginEditing(_ sender: UITextField) {
