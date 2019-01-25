@@ -92,6 +92,9 @@ class InfeedAfiOViewController: UIViewController {
     AMoAdNativeViewManager.shared().renderAd(withSid: sid, tag: "", view: self.afioView!, delegate: self)
     guard let videoView = self.afioView!.viewWithTag(7) as? AMoAdNativeMainVideoView else { return }
     videoView.delegate = self
+    if let link = self.afioView!.viewWithTag(6) as? UILabel {
+      link.isUserInteractionEnabled = true
+    }
   }
 }
 
