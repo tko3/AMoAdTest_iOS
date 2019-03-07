@@ -54,6 +54,14 @@
                     <color key="textColor" red="0.13827015749999999" green="0.54848266219999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view autoresizesSubviews="NO" tag="8" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDe-fr-muo">
+                    <rect key="frame" x="355" y="273" width="20" height="20"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="fJo-iD-uKb"/>
+                        <constraint firstAttribute="height" constant="20" id="gC7-xu-lJc"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -61,6 +69,7 @@
                 <constraint firstItem="oA5-kt-xyA" firstAttribute="top" secondItem="GZ0-ti-91j" secondAttribute="top" id="9rE-Z1-Coc"/>
                 <constraint firstItem="GZ0-ti-91j" firstAttribute="top" secondItem="aGm-7b-b5t" secondAttribute="bottom" id="DRr-NB-DHf"/>
                 <constraint firstAttribute="trailing" secondItem="GZ0-ti-91j" secondAttribute="trailing" id="Fay-BI-vlN"/>
+                <constraint firstItem="eDe-fr-muo" firstAttribute="trailing" secondItem="EzC-Qw-uq3" secondAttribute="trailing" id="Hht-bf-Cqv"/>
                 <constraint firstItem="aGm-7b-b5t" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="Hk4-8a-vWd"/>
                 <constraint firstItem="GZ0-ti-91j" firstAttribute="leading" secondItem="oA5-kt-xyA" secondAttribute="trailing" id="JwP-ZO-RzB"/>
                 <constraint firstItem="EzC-Qw-uq3" firstAttribute="top" secondItem="OF6-E2-3aN" secondAttribute="bottom" id="LRU-4R-HYJ"/>
@@ -79,6 +88,7 @@
                 <constraint firstItem="GZ0-ti-91j" firstAttribute="leading" secondItem="oA5-kt-xyA" secondAttribute="trailing" id="gXU-yX-qsJ"/>
                 <constraint firstItem="OF6-E2-3aN" firstAttribute="leading" secondItem="oA5-kt-xyA" secondAttribute="trailing" id="h2k-Bv-dob"/>
                 <constraint firstItem="EzC-Qw-uq3" firstAttribute="top" secondItem="OF6-E2-3aN" secondAttribute="bottom" id="oCf-yy-Zgi"/>
+                <constraint firstItem="eDe-fr-muo" firstAttribute="bottom" secondItem="EzC-Qw-uq3" secondAttribute="bottom" id="qkd-XT-y3x"/>
                 <constraint firstItem="U3D-pp-VzL" firstAttribute="leading" secondItem="oA5-kt-xyA" secondAttribute="trailing" id="xTr-sX-bf3"/>
                 <constraint firstItem="EzC-Qw-uq3" firstAttribute="leading" secondItem="oA5-kt-xyA" secondAttribute="trailing" id="z23-Bh-giB"/>
             </constraints>

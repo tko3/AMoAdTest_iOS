@@ -26,7 +26,6 @@ class WebViewWithUrlViewController: UIViewController {
     self.historyView = HistoryView(frame: CGRect.zero)
     self.historyView.delegate = self
     self.view.addSubview(self.historyView)
-    // Do any additional setup after loading the view.
   }
 
   private func initWebview() {
@@ -41,16 +40,6 @@ class WebViewWithUrlViewController: UIViewController {
     webView.bottomAnchor.constraint(equalTo: webViewContainer.bottomAnchor).isActive = true
     webView.heightAnchor.constraint(equalTo: webViewContainer.heightAnchor).isActive = true
   }
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destination.
-   // Pass the selected object to the new view controller.
-   }
-   */
 
   @IBAction func textFieldDidBeginEditing(_ sender: UITextField) {
     let frame = CGRect(x: self.urlTextField.frame.origin.x,
@@ -76,6 +65,7 @@ class WebViewWithUrlViewController: UIViewController {
 
 }
 
+// MARK: - WKNavigationDelegate
 extension WebViewWithUrlViewController: WKNavigationDelegate {
   func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
     if navigationAction.navigationType == .linkActivated {
@@ -91,6 +81,7 @@ extension WebViewWithUrlViewController: WKNavigationDelegate {
   }
 }
 
+// MARK: - HistoryViewDelegate
 extension WebViewWithUrlViewController: HistoryViewDelegate {
   func onSelected(text: String) {
     self.urlTextField.text = text

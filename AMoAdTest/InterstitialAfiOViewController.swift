@@ -26,19 +26,7 @@ class InterstitialAfiOViewController: UIViewController {
     self.historyView = HistoryView(frame: CGRect.zero)
     self.historyView.delegate = self
     self.view.addSubview(self.historyView)
-    // Do any additional setup after loading the view.
   }
-  
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destination.
-   // Pass the selected object to the new view controller.
-   }
-   */
 
   @IBAction func onEnvSegmentalControlChanged(_ sender: UISegmentedControl) {
     AMoAdNativeViewManager.shared()?.setEnvStaging(sender.selectedSegmentIndex == 1)
@@ -83,6 +71,7 @@ class InterstitialAfiOViewController: UIViewController {
   }
 }
 
+// MARK: - AMoAdInterstitialVideoDelegate
 extension InterstitialAfiOViewController: AMoAdInterstitialVideoDelegate {
   func amoadInterstitialVideo(_ amoadInterstitialVideo: AMoAdInterstitialVideo!, didLoadAd result: AMoAdResult) {
     switch (result) {
@@ -117,6 +106,7 @@ extension InterstitialAfiOViewController: AMoAdInterstitialVideoDelegate {
   }
 }
 
+// MARK: - HistoryViewDelegate
 extension InterstitialAfiOViewController: HistoryViewDelegate {
   func onSelected(text: String) {
     self.sidTextField.text = text

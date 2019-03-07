@@ -26,19 +26,7 @@ class InterstitialViewController: UIViewController {
     self.historyView = HistoryView(frame: CGRect.zero)
     self.historyView.delegate = self
     self.view.addSubview(self.historyView)
-    // Do any additional setup after loading the view.
   }
-  
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destination.
-   // Pass the selected object to the new view controller.
-   }
-   */
 
   func initAd(sid: String) {
     self.sid = sid
@@ -124,6 +112,7 @@ class InterstitialViewController: UIViewController {
   }
 }
 
+// MARK: - HistoryViewDelegate
 extension InterstitialViewController: HistoryViewDelegate {
   func onSelected(text: String) {
     self.sidTextField.text = text

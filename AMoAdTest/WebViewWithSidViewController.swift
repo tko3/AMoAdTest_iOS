@@ -31,7 +31,6 @@ class WebViewWithSidViewController: UIViewController {
     self.historyView = HistoryView(frame: CGRect.zero)
     self.historyView.delegate = self
     self.view.addSubview(self.historyView)
-    // Do any additional setup after loading the view.
   }
 
   private func initWebview() {
@@ -46,16 +45,6 @@ class WebViewWithSidViewController: UIViewController {
     webView.bottomAnchor.constraint(equalTo: webViewContainer.bottomAnchor).isActive = true
     webView.heightAnchor.constraint(equalTo: webViewContainer.heightAnchor).isActive = true
   }
-
-  /*
-   // MARK: - Navigation
-
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destination.
-   // Pass the selected object to the new view controller.
-   }
-   */
 
   @IBAction func textFieldDidBeginEditing(_ sender: UITextField) {
     let frame = CGRect(x: self.sidTextField.frame.origin.x,
@@ -100,6 +89,7 @@ class WebViewWithSidViewController: UIViewController {
 
 }
 
+// MARK: - WKNavigationDelegate
 extension WebViewWithSidViewController: WKNavigationDelegate {
   func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
     if navigationAction.navigationType == .linkActivated {
@@ -115,6 +105,7 @@ extension WebViewWithSidViewController: WKNavigationDelegate {
   }
 }
 
+// MARK: - HistoryViewDelegate
 extension WebViewWithSidViewController: HistoryViewDelegate {
   func onSelected(text: String) {
     self.sidTextField.text = text

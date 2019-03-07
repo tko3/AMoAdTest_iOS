@@ -26,19 +26,8 @@ class BannerViewController: UIViewController {
     self.historyView = HistoryView(frame: CGRect.zero)
     self.historyView.delegate = self
     self.view.addSubview(self.historyView)
-    // Do any additional setup after loading the view.
   }
   
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destination.
-   // Pass the selected object to the new view controller.
-   }
-   */
 
   @IBAction func onEnvSegmentalControlChanged(_ sender: UISegmentedControl) {
     AMoAdView.setEnvStaging(sender.selectedSegmentIndex == 1)
@@ -90,6 +79,7 @@ class BannerViewController: UIViewController {
   }
 }
 
+// MARK: - AMoAdViewDelegate
 extension BannerViewController: AMoAdViewDelegate {
   func aMoAdViewDidReceiveAd(_ amoadView: AMoAdView!) {
     self.addLog(message: "広告を受信しました", view: self.logView)
@@ -105,6 +95,7 @@ extension BannerViewController: AMoAdViewDelegate {
   }
 }
 
+// MARK: - HistoryViewDelegate
 extension BannerViewController: HistoryViewDelegate {
   func onSelected(text: String) {
     self.sidTextField.text = text

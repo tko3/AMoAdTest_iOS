@@ -27,19 +27,7 @@ class InfeedAfiOViewController: UIViewController {
     self.historyView = HistoryView(frame: CGRect.zero)
     self.historyView.delegate = self
     self.view.addSubview(self.historyView)
-    // Do any additional setup after loading the view.
   }
-  
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destination.
-   // Pass the selected object to the new view controller.
-   }
-   */
 
   func createAfioView() -> UIView {
     guard let afioView = Bundle.main.loadNibNamed("AfiOView", owner: nil, options: nil)?.first as? UIView else {
@@ -98,6 +86,7 @@ class InfeedAfiOViewController: UIViewController {
   }
 }
 
+// MARK: - AMoAdNativeAppDelegate
 extension InfeedAfiOViewController: AMoAdNativeAppDelegate {
   func amoadNativeDidReceive(_ sid: String!, tag: String!, view: UIView!, state: AMoAdResult) {
     switch (state) {
@@ -145,6 +134,7 @@ extension InfeedAfiOViewController: AMoAdNativeAppDelegate {
   }
 }
 
+// MARK: - AMoAdNativeVideoAppDelegate
 extension InfeedAfiOViewController: AMoAdNativeVideoAppDelegate {
   func amoadNativeVideoDidStart(_ amoadNativeMainVideoView: UIView!) {
     self.addLog(message: "動画の再生を開始しました", view: self.logView)
@@ -159,6 +149,7 @@ extension InfeedAfiOViewController: AMoAdNativeVideoAppDelegate {
   }
 }
 
+// MARK: - HistoryViewDelegate
 extension InfeedAfiOViewController: HistoryViewDelegate {
   func onSelected(text: String) {
     self.sidTextField.text = text
