@@ -21,8 +21,7 @@ class InterstitialViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    AMoAdLogger.shared().logging = true
-    AMoAdLogger.shared().trace = true
+    AMoAdLogger.logLevel = .debug
     self.historyView = HistoryView(frame: CGRect.zero)
     self.historyView.delegate = self
     self.view.addSubview(self.historyView)
@@ -42,13 +41,9 @@ class InterstitialViewController: UIViewController {
 
   func initAd(sid: String) {
     self.sid = sid
-    AMoAdInterstitial.registerAd(withSid: sid)
-    AMoAdInterstitial.setPortraitPanelWithSid(sid, image: UIImage.init(named: "user_panel.png"))
-    AMoAdInterstitial.setAutoReloadWithSid(sid, autoReload: true)
-  }
-
-  @IBAction func onEnvSegmentalControlChanged(_ sender: UISegmentedControl) {
-    AMoAdView.setEnvStaging(sender.selectedSegmentIndex == 1)
+    AMoAdInterstitial.registerAd(sid: sid)
+    AMoAdInterstitial.setPortraitPanel(sid: sid, image: UIImage.init(named: "user_panel.png"))
+    AMoAdInterstitial.setAutoReload(sid: sid, isAutoReload: true)
   }
   
   @IBAction func textFieldDidBeginEditing(_ sender: UITextField) {
@@ -73,7 +68,7 @@ class InterstitialViewController: UIViewController {
     addHistory(viewName: viewName, sid: sid)
     self.initAd(sid: sid)
 
-    AMoAdInterstitial.loadAd(withSid: self.sid) { (id, result, error) in
+    AMoAdInterstitial.loadAd(sid: self.sid!) { (id, result, error) in
       switch (result) {
       case .success:
         self.addLog(message: "広告の読み込みが完了しました", view: self.logView)
@@ -97,12 +92,12 @@ class InterstitialViewController: UIViewController {
       self.showAlert(message: "sidが指定されていません")
       return
     }
-    if (!AMoAdInterstitial.isLoadedAd(withSid: sid)) {
+    if (!AMoAdInterstitial.isLoadedAd(sid: sid)) {
       self.showAlert(message: "広告の読み込みが完了していません")
       return
     }
     
-    AMoAdInterstitial.showAd(withSid: sid) { (id, result, error) in
+    AMoAdInterstitial.showAd(sid: sid) { (id, result, error) in
       switch (result) {
       case .click:
         self.addLog(message: "リンクボタンがクリックされたので閉じました", view: self.logView)

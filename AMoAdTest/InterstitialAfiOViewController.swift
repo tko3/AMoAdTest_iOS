@@ -21,8 +21,7 @@ class InterstitialAfiOViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    AMoAdLogger.shared().logging = true
-    AMoAdLogger.shared().trace = true
+    AMoAdLogger.logLevel = .debug
     self.historyView = HistoryView(frame: CGRect.zero)
     self.historyView.delegate = self
     self.view.addSubview(self.historyView)
@@ -39,10 +38,6 @@ class InterstitialAfiOViewController: UIViewController {
    // Pass the selected object to the new view controller.
    }
    */
-
-  @IBAction func onEnvSegmentalControlChanged(_ sender: UISegmentedControl) {
-    AMoAdNativeViewManager.shared()?.setEnvStaging(sender.selectedSegmentIndex == 1)
-  }
 
   @IBAction func textFieldDidBeginEditing(_ sender: UITextField) {
     let frame = CGRect(x: self.sidTextField.frame.origin.x,
@@ -64,7 +59,7 @@ class InterstitialAfiOViewController: UIViewController {
     addHistory(viewName: viewName, sid: sid)
     self.sid = sid
 
-    interstitialAfio = AMoAdInterstitialVideo.sharedInstance(withSid: sid, tag: "")
+    interstitialAfio = AMoAdInterstitialVideo.shared(sid: sid, tag: "")
     interstitialAfio?.delegate = self
     interstitialAfio?.load()
 
