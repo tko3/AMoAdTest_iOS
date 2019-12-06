@@ -79,7 +79,7 @@ class InterstitialAfiOViewController: UIViewController {
 }
 
 extension InterstitialAfiOViewController: AMoAdInterstitialVideoDelegate {
-  func amoadInterstitialVideo(_ amoadInterstitialVideo: AMoAdInterstitialVideo!, didLoadAd result: AMoAdResult) {
+  func amoadInterstitialVideoDidLoadAd(amoadInterstitialVideo: AMoAd.AMoAdInterstitialVideo, result: AMoAd.AMoAdResult) {
     switch (result) {
     case .success:
       self.addLog(message: "広告の読み込みが完了しました", view: self.logView)
@@ -92,22 +92,22 @@ extension InterstitialAfiOViewController: AMoAdInterstitialVideoDelegate {
       break
     }
   }
-  func amoadInterstitialVideoDidStart(_ amoadInterstitialVideo: AMoAdInterstitialVideo!) {
+  func amoadInterstitialVideoDidStart(amoadInterstitialVideo: AMoAdInterstitialVideo) {
     self.addLog(message: "動画の再生を開始しました", view: self.logView)
   }
-  func amoadInterstitialVideoDidComplete(_ amoadInterstitialVideo: AMoAdInterstitialVideo!) {
+  func amoadInterstitialVideoDidComplete(amoadInterstitialVideo: AMoAdInterstitialVideo) {
     self.addLog(message: "動画の再生が完了しました", view: self.logView)
   }
-  func amoadInterstitialVideoDidFailToPlay(_ amoadInterstitialVideo: AMoAdInterstitialVideo!) {
+  func amoadInterstitialVideoDidFailToPlay(amoadInterstitialVideo: AMoAdInterstitialVideo) {
     self.addLog(message: "動画の再生を開始しました", view: self.logView)
   }
-  func amoadInterstitialVideoDidShow(_ amoadInterstitialVideo: AMoAdInterstitialVideo!) {
+  func amoadInterstitialVideoDidShow(amoadInterstitialVideo: AMoAdInterstitialVideo) {
     self.addLog(message: "広告の表示を開始しました", view: self.logView)
   }
-  func amoadInterstitialVideoWillDismiss(_ amoadInterstitialVideo: AMoAdInterstitialVideo!) {
+  func amoadInterstitialVideoWillDismiss(amoadInterstitialVideo: AMoAdInterstitialVideo) {
     self.addLog(message: "広告の表示が終了しました", view: self.logView)
   }
-  func amoadInterstitialVideoDidClickAd(_ amoadInterstitialVideo: AMoAdInterstitialVideo!) {
+  func amoadInterstitialVideoDidClickAd(amoadInterstitialVideo: AMoAdInterstitialVideo) {
     self.addLog(message: "広告をタップしました", view: self.logView)
   }
 }
