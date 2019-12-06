@@ -1,16 +1,24 @@
 PODS:
-  - AMoAd (5.2.8)
+  - AMoAd (6.0.2):
+    - ReachabilitySwift (~> 4.3.1)
+    - SnapKit (~> 4.2.0)
+  - ReachabilitySwift (4.3.1)
+  - SnapKit (4.2.0)
 
 DEPENDENCIES:
   - AMoAd
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - AMoAd
+    - ReachabilitySwift
+    - SnapKit
 
 SPEC CHECKSUMS:
-  AMoAd: 8803d2e1be0ad3d2e0ff91562e76d18202ee48ed
+  AMoAd: ea65428c248d07ad87023695ac30b457b78eaea5
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
 PODFILE CHECKSUM: 342f4a76ef20c646589c068f19493045fbab7fef
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

@@ -22,8 +22,7 @@ class InfeedAfiOViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    AMoAdLogger.shared().logging = true
-    AMoAdLogger.shared().trace = true
+    AMoAdLogger.logLevel = .debug
     self.historyView = HistoryView(frame: CGRect.zero)
     self.historyView.delegate = self
     self.view.addSubview(self.historyView)
@@ -58,10 +57,6 @@ class InfeedAfiOViewController: UIViewController {
     self.adView.addConstraint(NSLayoutConstraint.init(item: view, attribute: .height,  relatedBy: .equal, toItem: self.adView, attribute: .height,  multiplier: 1, constant: 0))
   }
 
-  @IBAction func onEnvSegmentalControlChanged(_ sender: UISegmentedControl) {
-    AMoAdNativeViewManager.shared()?.setEnvStaging(sender.selectedSegmentIndex == 1)
-  }
-
   @IBAction func textFieldDidBeginEditing(_ sender: UITextField) {
     let frame = CGRect(x: self.sidTextField.frame.origin.x,
                        y: self.sidTextField.frame.origin.y + self.sidTextField.frame.height,
@@ -82,14 +77,14 @@ class InfeedAfiOViewController: UIViewController {
     }
 
     if (self.afioView != nil) {
-      AMoAdNativeViewManager.shared().clearAd(withSid: self.sid, tag: "")
+      AMoAdNativeViewManager.shared.clearAd(sid: self.sid!, tag: "")
       self.afioView?.removeFromSuperview()
     }
     addHistory(viewName: viewName, sid: sid)
     self.afioView = self.createAfioView()
     self.sid = sid
-    AMoAdNativeViewManager.shared()?.prepareAd(withSid: sid)
-    AMoAdNativeViewManager.shared().renderAd(withSid: sid, tag: "", view: self.afioView!, delegate: self)
+    AMoAdNativeViewManager.shared.prepareAd(sid: sid)
+    AMoAdNativeViewManager.shared.renderAd(sid: sid, tag: "", view: self.afioView!, delegate: self)
     guard let videoView = self.afioView!.viewWithTag(7) as? AMoAdNativeMainVideoView else { return }
     videoView.delegate = self
     if let link = self.afioView!.viewWithTag(6) as? UILabel {
@@ -99,7 +94,7 @@ class InfeedAfiOViewController: UIViewController {
 }
 
 extension InfeedAfiOViewController: AMoAdNativeAppDelegate {
-  func amoadNativeDidReceive(_ sid: String!, tag: String!, view: UIView!, state: AMoAdResult) {
+  func amoadNativeDidReceive(sid: String, tag: String, view: UIView, state: AMoAdResult) {
     switch (state) {
     case .success:
       self.addLog(message: "広告の読み込みが完了しました", view: self.logView)
@@ -113,7 +108,7 @@ extension InfeedAfiOViewController: AMoAdNativeAppDelegate {
     }
   }
 
-  func amoadNativeIconDidReceive(_ sid: String!, tag: String!, view: UIView!, state: AMoAdResult) {
+  func amoadNativeIconDidReceive(sid: String, tag: String, view: UIView, state: AMoAdResult) {
     switch (state) {
     case .success:
       self.addLog(message: "アイコン画像の読み込みが完了しました", view: self.logView)
@@ -127,7 +122,7 @@ extension InfeedAfiOViewController: AMoAdNativeAppDelegate {
     }
   }
 
-  func amoadNativeImageDidReceive(_ sid: String!, tag: String!, view: UIView!, state: AMoAdResult) {
+  func amoadNativeImageDidReceive(sid: String, tag: String, view: UIView, state: AMoAdResult) {
     switch (state) {
     case .success:
       self.addLog(message: "メイン画像の読み込みが完了しました", view: self.logView)
@@ -140,21 +135,21 @@ extension InfeedAfiOViewController: AMoAdNativeAppDelegate {
       break
     }
   }
-  func amoadNativeDidClick(_ sid: String!, tag: String!, view: UIView!) {
+  func amoadNativeDidClick(sid: String, tag: String, view: UIView) {
     self.showAlert(message: "広告をタップしました")
   }
 }
 
 extension InfeedAfiOViewController: AMoAdNativeVideoAppDelegate {
-  func amoadNativeVideoDidStart(_ amoadNativeMainVideoView: UIView!) {
+  func amoadNativeVideoDidStart(view amoadNativeMainVideoView: UIView) {
     self.addLog(message: "動画の再生を開始しました", view: self.logView)
   }
 
-  func amoadNativeVideoDidComplete(_ amoadNativeMainVideoView: UIView!) {
+  func amoadNativeVideoDidComplete(view amoadNativeMainVideoView: UIView) {
     self.addLog(message: "動画の再生が完了しました", view: self.logView)
   }
 
-  func amoadNativeVideoDidFailToPlay(_ amoadNativeMainVideoView: UIView!) {
+  func amoadNativeVideoDidFailToPlay(view amoadNativeMainVideoView: UIView) {
     self.showAlert(message: "動画の再生に失敗しました")
   }
 }

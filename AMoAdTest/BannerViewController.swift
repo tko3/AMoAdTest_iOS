@@ -21,8 +21,7 @@ class BannerViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    AMoAdLogger.shared().logging = true
-    AMoAdLogger.shared().trace = true
+    AMoAdLogger.logLevel = .debug
     self.historyView = HistoryView(frame: CGRect.zero)
     self.historyView.delegate = self
     self.view.addSubview(self.historyView)
@@ -39,11 +38,7 @@ class BannerViewController: UIViewController {
    // Pass the selected object to the new view controller.
    }
    */
-
-  @IBAction func onEnvSegmentalControlChanged(_ sender: UISegmentedControl) {
-    AMoAdView.setEnvStaging(sender.selectedSegmentIndex == 1)
-  }
-
+  
   @IBAction func textFieldDidBeginEditing(_ sender: UITextField) {
     let frame = CGRect(x: self.sidTextField.frame.origin.x,
                        y: self.sidTextField.frame.origin.y + self.sidTextField.frame.height,
